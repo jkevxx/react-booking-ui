@@ -1,23 +1,23 @@
-import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
+import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import {
   faBed,
   faCar,
   faPerson,
   faPlane,
   faTaxi,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
-import "./header.css";
-import { DateRange } from "react-date-range";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
-import { format } from "date-fns";
-import OptionItem from "./OptionItem";
-import { useNavigate } from "react-router-dom";
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from 'react';
+import './header.css';
+import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import { format } from 'date-fns';
+import OptionItem from './OptionItem';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ type }) => {
-  const [destination, setDestination] = useState("");
+  const [destination, setDestination] = useState('');
   const [openDate, setOpenDate] = useState(false);
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
@@ -26,6 +26,14 @@ const Header = ({ type }) => {
     room: 1,
   });
 
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection',
+    },
+  ]);
+
   const navigate = useNavigate();
 
   const handleOption = (name, operation) => {
@@ -33,28 +41,20 @@ const Header = ({ type }) => {
       return {
         ...prev,
         [name]:
-          operation === "increment" ? options[name] + 1 : options[name] - 1,
+          operation === 'increment' ? options[name] + 1 : options[name] - 1,
       };
     });
   };
 
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
-
   const handleSearch = () => {
-    navigate("/hotels", { state: { destination, date, options } });
+    navigate('/hotels', { state: { destination, date, options } });
   };
 
   return (
     <div className="header">
       <div
         className={
-          type === "list" ? "headerContainer listMode" : "headerContainer"
+          type === 'list' ? 'headerContainer listMode' : 'headerContainer'
         }
       >
         <div className="headerList">
@@ -80,7 +80,7 @@ const Header = ({ type }) => {
           </div>
         </div>
 
-        {type !== "list" && (
+        {type !== 'list' && (
           <>
             <h1 className="headerTitle">
               A lifetime of discounts? It's Genius.
@@ -108,8 +108,8 @@ const Header = ({ type }) => {
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
                 >
-                  {`${format(date[0].startDate, "MM/dd/yyyy")} to 
-              ${format(date[0].endDate, "MM/dd/yyyy")}`}
+                  {`${format(date[0].startDate, 'MM/dd/yyyy')} to 
+              ${format(date[0].endDate, 'MM/dd/yyyy')}`}
                 </span>
                 {openDate && (
                   <DateRange
@@ -197,20 +197,20 @@ const Header = ({ type }) => {
                       </div>
                     </div> */}
                     <OptionItem
-                      propertyName={"Adult"}
-                      typeElement={"adult"}
+                      propertyName={'Adult'}
+                      typeElement={'adult'}
                       objOptions={options}
                       funHandleOption={handleOption}
                     />
                     <OptionItem
-                      propertyName={"Children"}
-                      typeElement={"children"}
+                      propertyName={'Children'}
+                      typeElement={'children'}
                       objOptions={options}
                       funHandleOption={handleOption}
                     />
                     <OptionItem
-                      propertyName={"Room"}
-                      typeElement={"room"}
+                      propertyName={'Room'}
+                      typeElement={'room'}
                       objOptions={options}
                       funHandleOption={handleOption}
                     />

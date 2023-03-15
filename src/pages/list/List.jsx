@@ -1,11 +1,11 @@
-import { format } from "date-fns";
-import React, { useState } from "react";
-import { DateRange } from "react-date-range";
-import { useLocation } from "react-router-dom";
-import Header from "../../components/header/Header";
-import Navbar from "../../components/navbar/Navbar";
-import SearchItem from "../../components/searchItem/SearchItem";
-import "./list.css";
+import { format } from 'date-fns';
+import React, { useState } from 'react';
+import { DateRange } from 'react-date-range';
+import { useLocation } from 'react-router-dom';
+import Header from '../../components/header/Header';
+import Navbar from '../../components/navbar/Navbar';
+import SearchItem from '../../components/searchItem/SearchItem';
+import './list.css';
 
 const List = () => {
   const location = useLocation();
@@ -37,8 +37,8 @@ const List = () => {
               <label>Check-in Date</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
                 date[0].startDate,
-                "MM/dd/yyyy"
-              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+                'MM/dd/yyyy'
+              )} to ${format(date[0].endDate, 'MM/dd/yyyy')}`}</span>
               {openDate && (
                 <DateRange
                   onChange={(item) => setDate([item.selection])}
@@ -57,12 +57,14 @@ const List = () => {
                   </span>
                   <input type="text" className="lsOptionInput" />
                 </div>
+
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
                     Max Price <small>per night</small>
                   </span>
                   <input type="text" className="lsOptionInput" />
                 </div>
+
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Adult</span>
                   <input
@@ -72,6 +74,7 @@ const List = () => {
                     placeholder={options.adult}
                   />
                 </div>
+
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Children</span>
                   <input
@@ -81,6 +84,7 @@ const List = () => {
                     placeholder={options.children}
                   />
                 </div>
+
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Room</span>
                   <input
@@ -95,6 +99,10 @@ const List = () => {
             <button>Search</button>
           </div>
           <div className="listResult">
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
+            <SearchItem />
             <SearchItem />
             <SearchItem />
             <SearchItem />
